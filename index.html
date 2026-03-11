@@ -9,8 +9,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Kiri">
 <meta name="theme-color" content="#7a2f2f">
-<link rel="apple-touch-icon" href="/icon-512.svg">
-<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/kiri/icon-512.svg">
+<link rel="manifest" href="/kiri/manifest.json">
 <script>
 // Capturar beforeinstallprompt LO ANTES POSIBLE (antes de cualquier otro script)
 window._pwaPrompt = null;
@@ -22,7 +22,7 @@ window.addEventListener('beforeinstallprompt', function(e) {
 });
 // Registrar SW también temprano
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(function(){});
+  navigator.serviceWorker.register('/kiri/sw.js').catch(function(){});
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -77,46 +77,44 @@ header {
 .logo-wrap {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  text-decoration: none;
 }
-
-/* Círculo del logo */
-.logo-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.18);
-  border: 1.5px solid rgba(255,255,255,0.25);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  overflow: hidden;
+.logo-kanji {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.5);
+  line-height: 1;
+  letter-spacing: 0;
+  user-select: none;
 }
-.logo-mark svg {
-  width: 36px;
-  height: 36px;
+.logo-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255,255,255,0.2);
 }
-
 .logo-text {
   display: flex;
   flex-direction: column;
   line-height: 1;
+  gap: 3px;
 }
 .logo-name {
   font-family: 'DM Sans', sans-serif;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
   text-transform: uppercase;
   color: #fff;
 }
 .logo-sub {
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 9px;
-  color: rgba(255,255,255,0.5);
-  letter-spacing: 1px;
-  margin-top: 2px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 8px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 2px;
+  text-transform: lowercase;
 }
 .header-actions { display: flex; gap: 6px; align-items: center; }
 
@@ -1272,11 +1270,11 @@ header {
 /* ── SPLASH SCREEN ──────────────────────────────────────────── */
 #splash-screen {
   position: fixed; inset: 0;
-  background: var(--kiri);
+  background: #7a2f2f;
   display: flex; flex-direction: column;
   align-items: center; justify-content: center;
   z-index: 9999;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
   gap: 16px;
 }
 #splash-screen.hide {
@@ -1287,8 +1285,6 @@ header {
   background: rgba(255,255,255,0.12);
   border-radius: 22px;
   display: flex; align-items: center; justify-content: center;
-  font-family: 'Noto Sans JP', sans-serif;
-  font-size: 52px; color: #fff;
   margin-bottom: 4px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.2);
 }
@@ -1434,19 +1430,8 @@ header {
 
 <header>
   <div class="logo-wrap" onclick="S.active=null;render()" style="cursor:pointer" title="Ir al inicio">
-    <div class="logo-mark">
-      <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="36" rx="9" fill="rgba(255,255,255,0.0)"/>
-        <!-- Kanji 桐 dibujado como paths para máxima compatibilidad -->
-        <text x="18" y="26" 
-          font-family="'Noto Sans JP', 'Yu Gothic', 'Hiragino Sans', serif"
-          font-size="22"
-          font-weight="500"
-          text-anchor="middle"
-          fill="white"
-          dominant-baseline="auto">桐</text>
-      </svg>
-    </div>
+    <span class="logo-kanji">桐</span>
+    <div class="logo-divider"></div>
     <div class="logo-text">
       <div class="logo-name">Kiri</div>
       <div class="logo-sub">arquitectura mobiliaria</div>
@@ -1566,7 +1551,7 @@ header {
 
 <!-- PWA Install Banner (Android) -->
 <div id="pwa-install-banner">
-  <div class="pwa-banner-icon">桐</div>
+  <div class="pwa-banner-icon"><svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" width="24" height="24"><rect x="19.5" y="7" width="9" height="1.2" rx=".4" fill="white"/><rect x="19.5" y="7" width="1.2" height="22" rx=".4" fill="white"/><rect x="27.3" y="7" width="1.2" height="22" rx=".4" fill="white"/><rect x="19.5" y="28" width="9" height="1.2" rx=".4" fill="white"/><rect x="19.5" y="12.5" width="9" height="1.1" rx=".3" fill="white"/><rect x="21.2" y="14.5" width="5.5" height="1" rx=".3" fill="white"/><rect x="21.2" y="14.5" width="1" height="9.5" rx=".3" fill="white"/><rect x="25.7" y="14.5" width="1" height="9.5" rx=".3" fill="white"/><rect x="21.2" y="23" width="5.5" height="1" rx=".3" fill="white"/><rect x="11.4" y="7" width="1.2" height="22" rx=".4" fill="white"/><rect x="8" y="12.5" width="8" height="1.1" rx=".3" fill="white"/><line x1="12" y1="18" x2="8" y2="28" stroke="white" stroke-width="1.2" stroke-linecap="round"/><line x1="12" y1="18" x2="16" y2="28" stroke="white" stroke-width="1.2" stroke-linecap="round"/></svg></div>
   <div class="pwa-banner-text">
     <div class="pwa-banner-title">Instalar Kiri</div>
     <div class="pwa-banner-sub">Accedé directo desde tu pantalla</div>
@@ -1599,7 +1584,25 @@ header {
 
 <!-- Splash Screen -->
 <div id="splash-screen">
-  <div class="splash-icon">桐</div>
+  <div class="splash-icon">
+  <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" width="56" height="56">
+    <!-- 同 -->
+    <rect x="43" y="14" width="22" height="3" rx="1" fill="white"/>
+    <rect x="43" y="14" width="3" height="52" rx="1" fill="white"/>
+    <rect x="62" y="14" width="3" height="52" rx="1" fill="white"/>
+    <rect x="43" y="63" width="22" height="3" rx="1" fill="white"/>
+    <rect x="43" y="28" width="22" height="2.5" rx="1" fill="white"/>
+    <rect x="47" y="33" width="13" height="2.5" rx="1" fill="white"/>
+    <rect x="47" y="33" width="2.5" height="22" rx="1" fill="white"/>
+    <rect x="57.5" y="33" width="2.5" height="22" rx="1" fill="white"/>
+    <rect x="47" y="52.5" width="13" height="2.5" rx="1" fill="white"/>
+    <!-- 木 -->
+    <rect x="26" y="14" width="3" height="52" rx="1" fill="white"/>
+    <rect x="16" y="28" width="22" height="2.5" rx="1" fill="white"/>
+    <line x1="27.5" y1="42" x2="15" y2="66" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    <line x1="27.5" y1="42" x2="40" y2="66" stroke="white" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+</div>
   <div class="splash-name">Kiri</div>
   <div class="splash-sub">arquitectura mobiliaria</div>
 </div>
