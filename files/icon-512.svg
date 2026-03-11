@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Fondo borravino con esquinas redondeadas tipo app -->
+  <rect width="512" height="512" rx="114" fill="#7a2f2f"/>
+  <!-- Kanji decorativo de fondo, muy sutil -->
+  <text x="256" y="320"
+    font-family="'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif"
+    font-size="300"
+    font-weight="400"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="rgba(255,255,255,0.07)">桐</text>
+  <!-- Kanji principal centrado -->
+  <text x="256" y="310"
+    font-family="'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', sans-serif"
+    font-size="260"
+    font-weight="500"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    fill="white">桐</text>
+</svg>
